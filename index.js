@@ -1,22 +1,24 @@
-const recipeContents=[{
-    title:'簡単！ホットケーキミックスでピザ',
-    name:'by A',
-    time:'15分',
-    like: 1000,
-    date: '2019年5月12日',
-    photo:'https://asset.oceans-nadia.com/upload/save_image/84/84cf28750053bfc6587635e221fc95cf.jpeg'},
-    {title:'もちもちかしわもち',
-    name:'by B',
-    time:'40分',
-    like: 500,
-    date: '2021年2月1日',
-    photo:'https://asset.oceans-nadia.com/upload/save_image/e2/e27fe8e59fcd7bf4088994ee73498375.jpg'},
-    {title:'ずっしりバナナパウンドケーキ',
-    name:'by C',
-    time:'10分',
-    like: 3000,
-    date: '2020年9月23日',
-    photo:'https://asset.oceans-nadia.com/upload/save_image/00/009118220ec746e47e705891bf3aeedd.jpg'}];
+
+
+// const recipeContents=[{
+//     title:'簡単！ホットケーキミックスでピザ',
+//     name:'by A',
+//     time:'15分',
+//     like: 1000,
+//     date: '2019年5月12日',
+//     photo:'https://asset.oceans-nadia.com/upload/save_image/84/84cf28750053bfc6587635e221fc95cf.jpeg'},
+//     {title:'もちもちかしわもち',
+//     name:'by B',
+//     time:'40分',
+//     like: 500,
+//     date: '2021年2月1日',
+//     photo:'https://asset.oceans-nadia.com/upload/save_image/e2/e27fe8e59fcd7bf4088994ee73498375.jpg'},
+//     {title:'ずっしりバナナパウンドケーキ',
+//     name:'by C',
+//     time:'10分',
+//     like: 3000,
+//     date: '2020年9月23日',
+//     photo:'https://asset.oceans-nadia.com/upload/save_image/00/009118220ec746e47e705891bf3aeedd.jpg'}];
 
     
 
@@ -54,7 +56,7 @@ for(let i=0; i<recipeItem.length; i++){
 
 
 }
-createList(recipeContents);
+
 
 
 const sort= (value)=>{
@@ -92,13 +94,23 @@ getBtn.forEach((item)=>item.addEventListener('click', (e)=>{
    
     })
 )
-let requestURL='http://localhost:3000';
-let request= new XMLHttpRequest();
-request.open('GET', requestURL);
-request.responseType = 'json';
-console.log(request.response);
-request.onload=()=>{
-    let responseJson =JSON.parse(request.response);
-    console.log(responseJson);
-}
-request.send();
+// let requestURL='http://localhost:3000/recipe-list';
+// let request= new XMLHttpRequest();
+// request.open('GET', requestURL);
+// request.withCredentials = true;
+// request.responseType = 'json';
+// request.send();
+// console.log(request);
+// request.onload=()=>{
+//     let responseJson =JSON.parse(request.response);
+//     console.log(responseJson);
+// }
+
+
+fetch('http://localhost:3000/recipe-list')
+  .then(response => response.json())
+  .then((data)=>{
+    createList(data);
+     });
+
+  

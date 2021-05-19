@@ -1,7 +1,9 @@
-const express = require('express')
+const express = require('express');
 const app = express();
+const cors = require('cors');
 
-[{"title":"簡単！ホットケーキミックスでピザ",
+
+const recipes=[{"title":"簡単！ホットケーキミックスでピザ",
   "name":"by A",
   "time":"15分",
   "like": 1000,
@@ -21,13 +23,21 @@ const app = express();
   "photo":"https://asset.oceans-nadia.com/upload/save_image/00/009118220ec746e47e705891bf3aeedd.jpg"}]
 
 
+app.use(express.json());
 
+
+app.use(cors({
+  origin: "http://127.0.0.1:5500",
+  credentials: true,
+  optionsSuccessStatus: 200
+}));
 
 app.get('/', (req, res) => {
   res.send('Hello World!!')
 });
 app.get('/recipe-list',(req, res)=>{
-  res.render();
+  
+  res.json(recipes);
 })
 app.listen(3000, () => {
   console.log('Example app listening on port 3000!')
